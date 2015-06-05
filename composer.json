@@ -1,0 +1,45 @@
+{
+  "name": "revision6/contao-bootstrap-image-classes",
+  "description": "Modified Contao templates supporting Bootstrap markup",
+  "keywords": [
+    "bootstrap",
+    "templates",
+    "contao"
+  ],
+  "type": "contao-module",
+  "license": "LGPL-3.0+",
+  "authors": [
+    {
+      "name": "Christopher Bölter",
+      "email": "c.boelter@revision6.de",
+      "homepage": "https://revision6.de",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "email": "shout@revision6.de",
+    "issues": "https://github.com/revision6/contao-bootstrap-image-classes/issues",
+    "source": "https://github.com/revision6/contao-bootstrap-image-classes"
+  },
+  "require": {
+    "php": ">=5.3.4",
+    "contao/core": ">=3.2,<3.6",
+    "contao-community-alliance/composer-plugin": "~2.0",
+    "contao-bootstrap/core": "~1.0"
+  },
+  "autoload": {
+    "psr-0": {"Revision6\\Bootstrap\\Templates": "src/"}
+  },
+  "extra": {
+    "contao": {
+      "sources": {
+        "module": "system/modules/bootstrap-image-classes"
+      }
+    },
+    "branch-alias": {
+      "dev-master": "1.0.x-dev",
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
