@@ -1,5 +1,16 @@
 <?php
 
+/**
+ *
+ * PHP version 5
+ *
+ * @package    BootstrapImageClasses
+ * @author     Christopher Boelter <c.boelter@revision6.de>
+ * @copyright  Revision6 UG
+ * @license    LGPL.
+ * @filesource
+ */
+
 namespace Revision6\Bootstrap\Templates;
 
 /**
@@ -22,61 +33,29 @@ class Modifier
             return;
         }
 
-        $cssClasses   = $template->class;
-        $cssClasses   = trimsplit(' ', $cssClasses);
-        $imageClasses = array();
+        $cssClassesInside = 'qwertu lala bblz';
 
-        foreach ($cssClasses as $index => $cssClass) {
-            if (substr($cssClass, 0, 4) == 'img-') {
-                $imageClasses[] = $cssClass;
-                unset($cssClasses[$index]);
-            }
-        }
+        if (count($cssClassesInside)) {
 
-        if (count($imageClasses)) {
-            $imageClasses       = implode(' ', $imageClasses);
-            $template->class    = implode(' ', $cssClasses);
-            $template->imgSize .= sprintf(' class="%s"', $imageClasses);
+            $template->imgSize = self::generateOrUpdateClass($template->imgSize, $cssClassesInside);
 
             if ($template->picture) {
-                $picture                = $template->picture;
-                $picture['attributes'] .= sprintf(' class="%s"', $imageClasses);
+                $picture = $template->picture;
 
-                $template->picture = $picture;
+                $picture['attributes'] = self::generateOrUpdateClass($picture['attributes'], $cssClassesInside);
+                $template->picture     = $picture;
             }
         }
     }
 
-    /**
-     * Replace table classes.
-     *
-     * @param \Template $template The template being parsed.
-     *
-     * @return void
-     */
-    public static function replaceTableClasses(\Template $template)
+    private function generateOrUpdateClass($source, $classes)
     {
-        $cssClasses   = $template->class;
-        $cssClasses   = trimsplit(' ', $cssClasses);
-        $tableClasses = array('table');
+        preg_match('/class=([^\/]+)/', $source, $matchesClass);
 
-        foreach ($cssClasses as $index => $cssClass) {
-            if (substr($cssClass, 0, 6) == 'table-') {
-                $tableClasses[] = $cssClass;
-                unset($cssClasses[$index]);
-            }
-        }
-
-        if (count($tableClasses) > 1) {
-            $template->class = implode(' ', $cssClasses);
-
-            // reset sortable, to avoid double class attributes
-            if ($template->sortable) {
-                $tableClasses[]     = 'sortable';
-                $template->sortable = null;
-            }
-
-            $template->id = sprintf('%s" class="%s', $template->id, implode(' ', $tableClasses));
+        if (count($matchesClass)) {
+            return str_replace('class="', 'class="' . $classes . ' ', $source);
+        } else {
+            return $source .= sprintf(' class="%s"', $classes);
         }
     }
 }
