@@ -35,7 +35,7 @@ class Modifier
 
         $cssClassesInside = $template->inlineClass;
 
-        if (count($cssClassesInside)) {
+        if ($cssClassesInside) {
 
             $template->imgSize = self::generateOrUpdateClass($template->imgSize, $cssClassesInside);
 
