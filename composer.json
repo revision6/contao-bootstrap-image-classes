@@ -28,7 +28,9 @@
     "contao-bootstrap/core": "~1.0"
   },
   "autoload": {
-    "psr-0": {"Revision6\\Bootstrap\\Templates": "src/"}
+    "psr-0": {
+      "Revision6": "src"
+    }
   },
   "extra": {
     "contao": {
