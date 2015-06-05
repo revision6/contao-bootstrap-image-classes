@@ -1,6 +1,6 @@
 <?php
 
-namespace Netzmacht\Bootstrap\Templates;
+namespace Revision6\Bootstrap\Templates;
 
 /**
  * Class Modifier provides modifier callbacks.
