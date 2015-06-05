@@ -33,7 +33,7 @@ class Modifier
             return;
         }
 
-        $cssClassesInside = 'qwertu lala bblz';
+        $cssClassesInside = $template->inlineClass;
 
         if (count($cssClassesInside)) {
 
